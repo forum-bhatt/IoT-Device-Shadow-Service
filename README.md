@@ -11,7 +11,7 @@ The Project revolves around creating a service that facilitates the following:
 6. Creating Lambda Function for the Authorizer
 7. Creating a fleet hub application for Monitoring purposes
 
-#Connected with AWS IoT using aws-device-sdk-java using the web socket connection method by Publishing and subscribing to a topic.
+# Connected with AWS IoT using aws-device-sdk-java using the web socket connection method by Publishing and subscribing to a topic.
 
 ![image](https://github.com/forum-bhatt/IoT-Device-Shadow-Service/assets/90527629/15008a93-89de-4d1a-8639-34ee09b4f424)
 
