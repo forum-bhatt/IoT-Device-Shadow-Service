@@ -2,6 +2,7 @@ package com.deviceshadow.controller;
 
 import com.amazonaws.services.iot.client.AWSIotException;
 import com.deviceshadow.dto.WeatherPayload;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ public class MqttController {
     MqttPubSubService service;
 
     @PostMapping("/publish")
-    public String publishMessage(@RequestBody WeatherPayload payload) throws AWSIotException {
+    public String publishMessage(@RequestBody WeatherPayload payload) throws AWSIotException, JsonProcessingException {
 
         service.publishMessage(payload);
 

@@ -17,6 +17,8 @@ The Project revolves around creating a service that facilitates the following:
 
 # Publish Payload to Topic
 
+![img.png](img.png)
+
 # AWS IoT Core Shadow Concept
 In the context of IoT (Internet of Things), shadows refer to a mechanism used in some IoT platforms to represent the state and desired state of devices or things. Shadows help maintain a consistent and synchronized view of the device's state between the physical device and the cloud-based IoT platform.
 
