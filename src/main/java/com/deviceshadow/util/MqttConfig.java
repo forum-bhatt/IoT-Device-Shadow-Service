@@ -4,44 +4,51 @@ import com.amazonaws.services.iot.client.AWSIotDevice;
 import com.amazonaws.services.iot.client.AWSIotException;
 import com.amazonaws.services.iot.client.AWSIotMqttClient;
 import com.amazonaws.services.iot.client.AWSIotQos;
+import com.deviceshadow.dto.AppConfig;
 import com.deviceshadow.dto.PubMessage;
 import com.deviceshadow.dto.PubMessage.MyMessage;
 import com.deviceshadow.dto.WeatherPayload;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MqttConfig {
     //    MQTT Connection over websocket
-    String clientEndpoint = "althpijq53owp-ats.iot.us-east-2.amazonaws.com";
-    String clientId = "WeatherMonitor"; // replace with your own client ID. Use unique client IDs for concurrent connections.
-    String awsAccessKeyId = "AKIAXLW4IACXM3DSNL5Y";
-    String awsSecretAccessKey = "Q0jYbOd60nPbYWXI8urkXEWqXgmMpnVG/C8KWYEA";
+    @Autowired
+    private AppConfig appConfig;
+    String clientId = "WeatherMonitor";
     AWSIotMqttClient client = null;
+    private String clientEndpoint;
+    private String awsAccessKeyId;
+    private String awsSecretAccessKey;
 
-    public void connectToIot() throws AWSIotException {
-        client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
-        client.connect();
-        System.out.println("Connected to IoT");
-    }
+        public void connectToIot() throws AWSIotException {
+            clientEndpoint = appConfig.getClientEndpoint();
+            awsAccessKeyId = appConfig.getAccessKeyId();
+            awsSecretAccessKey = appConfig.getSecretKeyId();
 
-    public void publish(WeatherPayload payload) throws AWSIotException, JsonProcessingException {
-        String topic = "$aws/things/WeatherMonitor/shadow/name/WeatherMonitorNamed/update";
-        AWSIotQos qos = AWSIotQos.QOS0;
-        long timeout = 3000;
+            client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
+            client.connect();
+            System.out.println("Connected to IoT");
+        }
 
-        ObjectMapper mapper = new ObjectMapper();
-        AWSIotDevice device = new AWSIotDevice(clientId);
-        String state = "{\"state\":{\"reported\":{\"sensor\":3.0}}}";
-        client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
-        client.attach(device);
-        client.connect();
+        public void publish(WeatherPayload payload) throws AWSIotException, JsonProcessingException {
+            String topic = "$aws/things/WeatherMonitor/shadow/name/WeatherMonitorNamed/update";
+            AWSIotQos qos = AWSIotQos.QOS0;
+            long timeout = 3000;
 
-        PubMessage pubMessage = new PubMessage();
-        MyMessage message = pubMessage.new MyMessage(topic, qos, state);
-        client.publish(message, timeout);
+            ObjectMapper mapper = new ObjectMapper();
+            AWSIotDevice device = new AWSIotDevice(clientId);
+            String state = "{\"state\":{\"reported\":{\"sensor\":3.0}}}";
+            client.attach(device);
+            client.connect();
 
-    }
+            PubMessage pubMessage = new PubMessage();
+            MyMessage message = pubMessage.new MyMessage(topic, qos, state);
+            client.publish(message, timeout);
+
+        }
     }
 

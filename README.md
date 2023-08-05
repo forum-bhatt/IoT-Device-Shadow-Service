@@ -1,24 +1,3 @@
-# IoT-Device-Shadow-Service
-This project creates a Digital Device Shadow service by creating Things on AWS IoT with a Pub-Sub Architecture and a Lambda function for the authorizer. In order to monitor, a fleet hub application is created.
-
-The Project revolves around creating a service that facilitates the following:
-
-1. Creating Things On IOT
-2. Attaching Policy and certificate to Things
-3. Creating a Digital Device Shadow service
-4. Publish and Subscribe to Device Shadow
-5. Creating Custom Authorizer
-6. Creating Lambda Function for the Authorizer
-7. Creating a fleet hub application for Monitoring purposes
-
-# Connected with AWS IoT using aws-device-sdk-java using the web socket connection method by Publishing and subscribing to a topic.
-
-![image](https://github.com/forum-bhatt/IoT-Device-Shadow-Service/assets/90527629/15008a93-89de-4d1a-8639-34ee09b4f424)
-
-# Publish Payload to Topic
-
-![img.png](img.png)
-
 # AWS IoT Core Shadow Concept
 In the context of IoT (Internet of Things), shadows refer to a mechanism used in some IoT platforms to represent the state and desired state of devices or things. Shadows help maintain a consistent and synchronized view of the device's state between the physical device and the cloud-based IoT platform.
 
@@ -44,13 +23,35 @@ There are two types of Shadows:
 
 2. Named Shadows
 - Named shadows, in the context of IoT, can be considered as "desired state shadows."
-- These represent the desired state that the cloud or an external system wants the physical IoT device to be in. 
+- These represent the desired state that the cloud or an external system wants the physical IoT device to be in.
 - It is used to communicate commands or instructions to the IoT device.
-- Used for multiple features of a single device/thing ex: Temperature tracker, Location Tracker, Remote door 
+- Used for multiple features of a single device/thing ex: Temperature tracker, Location Tracker, Remote door
   lock/unlock etc.
+
+# IoT-Device-Shadow-Service
+This project creates a Digital Device Shadow service by creating Things on AWS IoT with a Pub-Sub Architecture and a Lambda function for the authorizer. In order to monitor, a fleet hub application is created.
+
+The Project revolves around creating a service that facilitates the following:
+
+1. Creating Things On IOT
+2. Attaching Policy and certificate to Things
+3. Creating a Digital Device Shadow service
+4. Publish and Subscribe to Device Shadow
+5. Creating Custom Authorizer
+6. Creating Lambda Function for the Authorizer
+7. Creating a fleet hub application for Monitoring purposes
+
+# Connected with AWS IoT using aws-device-sdk-java using the web socket connection method by Publishing and subscribing to a topic.
+
+![image](https://github.com/forum-bhatt/IoT-Device-Shadow-Service/assets/90527629/15008a93-89de-4d1a-8639-34ee09b4f424)
+
+# Publish Payload to Topic
+
+![img.png](img.png)
 
 # Creating Classic and Named Shadow
 Creating Shadow Programmatically and Publishing and Subscribing to Device Shadows
 
 ![img_1.png](img_1.png)
 
+![img_2.png](img_2.png)
