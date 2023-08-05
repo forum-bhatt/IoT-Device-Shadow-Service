@@ -1,5 +1,6 @@
 package com.deviceshadow.util;
 
+import com.amazonaws.services.iot.client.AWSIotDevice;
 import com.amazonaws.services.iot.client.AWSIotException;
 import com.amazonaws.services.iot.client.AWSIotMqttClient;
 import com.amazonaws.services.iot.client.AWSIotQos;
@@ -20,20 +21,25 @@ public class MqttConfig {
     AWSIotMqttClient client = null;
 
     public void connectToIot() throws AWSIotException {
-         client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
+        client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
         client.connect();
         System.out.println("Connected to IoT");
     }
 
     public void publish(WeatherPayload payload) throws AWSIotException, JsonProcessingException {
-        String topic = "weathertopic";
+        String topic = "$aws/things/WeatherMonitor/shadow/update";
         AWSIotQos qos = AWSIotQos.QOS0;
         long timeout = 3000;
 
         ObjectMapper mapper = new ObjectMapper();
+        AWSIotDevice device = new AWSIotDevice(clientId);
+        String state = "{\"state\":{\"reported\":{\"sensor\":3.0}}}";
+        client = new AWSIotMqttClient(clientEndpoint, clientId, awsAccessKeyId, awsSecretAccessKey, null);
+        client.attach(device);
+        client.connect();
 
         PubMessage pubMessage = new PubMessage();
-        MyMessage message = pubMessage.new MyMessage(topic, qos, mapper.writeValueAsString(payload));
+        MyMessage message = pubMessage.new MyMessage(topic, qos, state);
         client.publish(message, timeout);
 
     }

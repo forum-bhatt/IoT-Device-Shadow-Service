@@ -14,7 +14,7 @@ public class MqttPubSubService {
     @Autowired
     MqttConfig mqttconfig;
     public void publishMessage(WeatherPayload payload) throws AWSIotException, JsonProcessingException {
-        mqttconfig.connectToIot();
+//        mqttconfig.connectToIot();
         mqttconfig.publish(payload);
     }
 }
