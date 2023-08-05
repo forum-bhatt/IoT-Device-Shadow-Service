@@ -27,7 +27,7 @@ public class MqttConfig {
     }
 
     public void publish(WeatherPayload payload) throws AWSIotException, JsonProcessingException {
-        String topic = "$aws/things/WeatherMonitor/shadow/update";
+        String topic = "$aws/things/WeatherMonitor/shadow/name/WeatherMonitorNamed/update";
         AWSIotQos qos = AWSIotQos.QOS0;
         long timeout = 3000;
 
