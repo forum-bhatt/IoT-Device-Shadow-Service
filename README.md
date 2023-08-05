@@ -10,3 +10,6 @@ The Project revolves around creating a service that facilitates the following:
 5. Creating Custom Authorizer
 6. Creating Lambda Function for the Authorizer
 7. Creating a fleet hub application for Monitoring purposes
+
+![image](https://github.com/forum-bhatt/IoT-Device-Shadow-Service/assets/90527629/15008a93-89de-4d1a-8639-34ee09b4f424)
+
