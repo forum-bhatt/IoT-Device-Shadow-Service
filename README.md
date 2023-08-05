@@ -50,6 +50,7 @@ There are two types of Shadows:
   lock/unlock etc.
 
 # Creating Classic and Named Shadow
-Creating Shadow Programmatically
-Publishing and Subscribing to Device Shadow
+Creating Shadow Programmatically and Publishing and Subscribing to Device Shadows
+
+![img_1.png](img_1.png)
 
